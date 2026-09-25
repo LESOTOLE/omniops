@@ -37,3 +37,12 @@
 - [ ] Deploy MySQL dan MongoDB di cloud provider (Supabase/Neon/Atlas).
 - [ ] Deploy backend NestJS di cloud platform (Railway/Render) dan frontend Next.js di Vercel.
 - [x] Tulis dokumentasi komprehensif pada `README.md` utama repository (arsitektur, kredensial akun demo, modul fitur, dan setup guide).
+
+### Phase 7: Security Hardening & Stability (Post-Audit Priority Fixes)
+- [x] Pasang rate limiting (@nestjs/throttler) dengan pembatasan ketat pada endpoint auth (5 req/min).
+- [x] Perketat CORS whitelist origin via `CORS_ORIGINS` environment variable.
+- [x] Pasang HTTP compression middleware (gzip) di NestJS backend.
+- [x] Tambahkan database performance indexes di Prisma schema (Product category, Inventory quantity, StockTransfer status, Order createdAt/warehouseId).
+- [x] Setup linting dan formatting tools (ESLint, Prettier) di backend dan root level.
+- [x] Buat Next.js error boundaries (`global-error.tsx`, `error.tsx`), custom 404 page (`not-found.tsx`), dan global loading skeleton (`loading.tsx`).
+- [x] Externalize Next.js API client base URL melalui `NEXT_PUBLIC_API_URL` dengan template `.env.example`.

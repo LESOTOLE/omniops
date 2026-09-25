@@ -98,6 +98,7 @@ model Product {
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
 
+  @@index([category])
   @@map("products")
 }
 
@@ -113,6 +114,7 @@ model Inventory {
   updatedAt   DateTime  @updatedAt
 
   @@unique([warehouseId, productId])
+  @@index([quantity])
   @@map("inventories")
 }
 
@@ -133,6 +135,7 @@ model StockTransfer {
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
 
+  @@index([status])
   @@map("stock_transfers")
 }
 
@@ -169,6 +172,8 @@ model Order {
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
 
+  @@index([createdAt])
+  @@index([warehouseId, createdAt])
   @@map("orders")
 }
 

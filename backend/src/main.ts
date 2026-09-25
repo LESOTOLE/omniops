@@ -3,6 +3,7 @@ import { ValidationPipe, Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
+import * as compression from 'compression';
 import { TransformResponseInterceptor } from './common/interceptors/transform-response.interceptor';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
@@ -13,13 +14,18 @@ async function bootstrap() {
   // Security Headers via Helmet
   app.use(helmet({ contentSecurityPolicy: false }));
 
+  // Compression
+  app.use(compression());
+
   // Set global API prefix
   app.setGlobalPrefix('api');
 
   // Enable CORS
   app.enableCors({
-    origin: true,
+    origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3000'],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   // Global Validation Pipe with class-validator
