@@ -1,37 +1,37 @@
 # OmniOps — B2B Operations & Multi-Store Inventory Platform
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-15.1-black?logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react)](https://react.dev/)
-[![NestJS](https://img.shields.io/badge/NestJS-10.4-E0234E?logo=nestjs)](https://nestjs.com/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![Prisma](https://img.shields.io/badge/Prisma-5.19-2D3748?logo=prisma)](https://www.prisma.io/)
-[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql)](https://www.mysql.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas%20%2F%20Local-47A248?logo=mongodb)](https://www.mongodb.com/)
-[![Swagger](https://img.shields.io/badge/OpenAPI-Swagger-85EA2D?logo=swagger)](http://localhost:4000/api/docs)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.1-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0-61DAFB)](https://react.dev/)
+[![NestJS](https://img.shields.io/badge/NestJS-10.4-E0234E)](https://nestjs.com/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0-38B2AC)](https://tailwindcss.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-5.19-2D3748)](https://www.prisma.io/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1)](https://www.mysql.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas%20%2F%20Local-47A248)](https://www.mongodb.com/)
+[![Swagger](https://img.shields.io/badge/OpenAPI-Swagger-85EA2D)](http://localhost:4000/api/docs)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 ---
 
-## 📌 Ringkasan & Deskripsi Proyek (Project Overview)
+## Project Overview
 
-**OmniOps** adalah platform enterprise *operations management* dan *point of sale* (POS) terpadu yang dirancang untuk mengatasi kompleksitas rantai pasok distribusi B2B serta jaringan ritel modern multi-cabang (*multi-store / multi-warehouse*).
+**OmniOps** is an integrated enterprise operations management and Point of Sale (POS) platform designed to tackle the complexities of B2B distribution supply chains and modern multi-branch retail networks (multi-store / multi-warehouse).
 
-### Masalah yang Diselesaikan (Problem Statement)
-Pada operasional retail dan distribusi konvensional:
-1. **Silo Inventaris:** Terjadinya selisih stok fisik antar gudang pusat (*distribution hub*) dan toko ritel cabang (*retail store*).
-2. **Resiko Manipulasi Data:** Perubahan data sensitif (harga jual/beli, *stock opname*, dan pembatalan pesanan) sering kali tidak memiliki riwayat audit yang transparan.
-3. **Lambatnya Transaksi Kasir:** Terminal POS yang lambat atau tidak terintegrasi dengan ketersediaan stok aktual di gudang lokal.
-4. **Visibilitas Eksekutif:** Ketiadaan dashboard analitik terpadu untuk memantau performa penjualan, margin, dan peringatan stok menipis secara *real-time*.
+### Problem Statement
+In conventional retail and distribution operations:
+1. **Inventory Silos:** Discrepancies between physical stock in central distribution hubs and retail branch stores.
+2. **Data Tampering Risks:** Sensitive data changes (buying/selling prices, stock opname/adjustments, and order cancellations) frequently lack transparent audit trails.
+3. **Slow Cashier Checkout:** Sluggish POS terminals or lack of integration with real-time stock availability in local warehouses.
+4. **Lack of Executive Visibility:** Absence of a unified analytics dashboard to monitor sales performance, margins, and low-stock alerts in real time.
 
-### Solusi OmniOps
-OmniOps menghadirkan arsitektur modular yang memadukan keandalan transaksi finansial berbasis **ACID (MySQL via Prisma ORM)** dengan kecepatan penulisan log audit tingkat tinggi berbasis **Document-based (MongoDB Atlas via Mongoose)**. Dilengkapi dengan antarmuka kasir cepat (Next.js 15 App Router & Zustand) serta sistem perizinan berbasis peran (*Role-Based Access Control*).
+### The OmniOps Solution
+OmniOps delivers a modular architecture that combines ACID-compliant financial transactions (**MySQL via Prisma ORM**) with high-throughput audit logging (**MongoDB Atlas via Mongoose**). It features a responsive, high-speed cashier terminal interface (Next.js 15 App Router & Zustand) and robust Role-Based Access Control (RBAC).
 
 ---
 
-## 🏗️ Arsitektur Sistem (System Architecture)
+## System Architecture
 
-Sistem OmniOps mengadopsi pola arsitektur *decoupled client-server* via RESTful API yang aman dan terisolasi:
+The OmniOps system adopts a decoupled client-server architectural pattern communicating via a secure, isolated RESTful API:
 
 ```mermaid
 graph TD
@@ -59,10 +59,10 @@ graph TD
 
     subgraph Persistence ["Dual-Database Persistence Tier"]
         subgraph Relational ["Relational Core (ACID via Prisma)"]
-            MySQL[("MySQL 8.0 (omniops_db)\n• Users & Roles\n• Warehouses & Products\n• Inventories & Orders\n• Stock Transfers")]
+            MySQL[("MySQL 8.0 (omniops_db)\n- Users & Roles\n- Warehouses & Products\n- Inventories & Orders\n- Stock Transfers")]
         end
         subgraph Document ["NoSQL Telemetry (Mongoose)"]
-            MongoDB[("MongoDB Atlas / Fallback Buffer\n• Immutable Audit Trail\n• Before/After Payload Diffs\n• User IP & Timestamps")]
+            MongoDB[("MongoDB Atlas / Fallback Buffer\n- Immutable Audit Trail\n- Before/After Payload Diffs\n- User IP & Timestamps")]
         end
     end
 
@@ -98,76 +98,76 @@ graph TD
 
 ---
 
-## ✨ Fitur-Fitur Utama (Key Features)
+## Key Features
 
-### 1. 📊 Executive Analytics Dashboard (`/dashboard`)
-- **Real-Time KPIs:** Pemantauan pendapatan kotor (*Gross Revenue*), total transaksi sukses, peringatan stok menipis (*Low Stock Warnings*), dan total varian SKU aktif.
-- **Visualisasi Tren Penjualan:** Grafik interaktif 7-hari berbasis grafik area / batang responsif (`Recharts`).
-- **Leaderboard Produk Terlaris:** Peringkat 5 produk teratas berdasarkan volume penjualan dan kontribusi omzet.
-- **Filter Multi-Cabang:** Kemampuan melihat data agregasi global atau memfilter per cabang gudang secara spesifik.
+### 1. Executive Analytics Dashboard (`/dashboard`)
+- **Real-Time KPIs:** Tracking of Gross Revenue, total successful transactions, Low Stock Warnings, and total active SKU variants.
+- **Sales Trend Visualization:** Interactive 7-day responsive area/bar charts powered by Recharts.
+- **Top-Selling Products Leaderboard:** Top 5 product rankings based on sales volume and revenue contribution.
+- **Multi-Branch Filtering:** Ability to view global aggregated metrics or filter specifically by warehouse branch.
 
-### 2. 🏢 Multi-Warehouse & Master Inventory (`/inventory`)
-- **Katalog Master Produk:** Pengelolaan data SKU, Barcode scanner ready, Kategori, Harga Beli (*Cost of Goods Sold*), dan Harga Jual.
-- **Multi-Location Inventory:** Pelacakan stok independen untuk masing-masing gudang (misal: *Central Hub*, *Store Jakarta*, *Store Bandung*).
-- **Peringatan Stok Otomatis:** Deteksi stok di bawah ambang batas minimal (*minimum stock threshold*) dengan penanda warna (*badge* indikator).
-- **Stock Opname (Adjustment Modal):** Penyesuaian stok manual dengan input alasan perubahan (*audit reason*) yang otomatis tercatat di log audit.
-- **Validasi Form Ketat:** Form penambahan dan edit produk divalidasi dengan Zod schema dan React Hook Form.
+### 2. Multi-Warehouse & Master Inventory (`/inventory`)
+- **Master Product Catalog:** Complete management of SKU data, barcode-scanner-ready fields, categories, cost of goods sold (COGS / buy price), and selling prices.
+- **Multi-Location Inventory:** Independent stock tracking for each warehouse (e.g., Central Hub, Jakarta Store, Bandung Store).
+- **Automated Stock Alerts:** Detection of stock falling below minimum threshold levels with visual indicator badges.
+- **Stock Opname (Stock Adjustment):** Manual stock adjustments requiring a mandatory audit reason, automatically recorded in the audit trail.
+- **Strict Form Validation:** Add/edit product forms validated with Zod schemas and React Hook Form.
 
-### 3. 🔄 Inter-Warehouse Stock Transfer Workflow (`/transfers`)
-- **Siklus Hidup Transfer:** Status terstruktur `PENDING` ➔ `APPROVED` ➔ `COMPLETED` / `REJECTED`.
-- **Integritas Transaksional ACID:** Pada saat transfer diselesaikan (`COMPLETED`), backend mengeksekusi Prisma `$transaction` yang secara atomik mengurangi stok gudang asal dan menambah stok gudang tujuan secara bersamaan untuk mencegah ketidaksesuaian.
-- **Validasi Stok Otomatis:** Sistem menolak transfer jika stok di gudang asal tidak mencukupi.
+### 3. Inter-Warehouse Stock Transfer Workflow (`/transfers`)
+- **Structured Transfer Lifecycle:** State progression: `PENDING` -> `APPROVED` -> `COMPLETED` / `REJECTED`.
+- **ACID Transactional Integrity:** When a transfer is marked `COMPLETED`, the backend executes a Prisma `$transaction` that atomically decrements the origin warehouse inventory and increments the destination warehouse inventory simultaneously to prevent discrepancies.
+- **Automated Stock Validation:** The system automatically rejects transfer requests if the origin warehouse has insufficient stock.
 
-### 4. 💳 High-Speed Point of Sale (POS) Terminal (`/pos`)
-- **Antarmuka Kasir Ergonomis:** Dirancang optimal untuk layar sentuh (*touchscreen*) maupun desktop dengan navigasi cepat.
-- **Dukungan Barcode Scanner:** Input barcode instan langsung menambahkan item ke keranjang kasir.
-- **Manajemen Keranjang Reaktif:** Ditenagai Zustand store untuk update kuantitas, penambahan diskon produk, dan kalkulasi subtotal instan.
-- **Kalkulasi Finansial Otomatis:** Perhitungan pajak PPN (11%), diskon global kasir, nominal uang diterima (*cash tendered*), dan uang kembalian (*change*).
-- **Cetak Struk Termal:** Modal struk digital siap cetak yang ramah printer thermal POS (58mm/80mm).
+### 4. High-Speed Point of Sale (POS) Terminal (`/pos`)
+- **Ergonomic Cashier Interface:** Optimized for touchscreen and desktop environments with rapid keyboard/click navigation.
+- **Barcode Scanner Support:** Instant barcode input immediately appends items to the active cart.
+- **Reactive Cart Management:** Powered by a Zustand store for instantaneous quantity updates, line-item discounts, and subtotal calculations.
+- **Automated Financial Calculations:** Dynamic computation of VAT (11%), global order discounts, cash tendered, and exact change.
+- **Thermal Receipt Printing:** Print-ready modal formatted for standard 58mm and 80mm thermal POS receipt printers.
 
-### 5. 🛡️ Dual-Database & Immutable Audit Trail (`/audit-logs`)
-- **Pencatatan Telemetri Asinkron:** Setiap tindakan krusial (login, modifikasi katalog, *stock opname*, transaksi POS, dan transfer stok) dicatat tanpa memperlambat thread utama transaksi MySQL.
-- **Payload Diff Inspector:** Antarmuka visual untuk menginspeksi snapshot data sebelum (`oldValue`) dan sesudah (`newValue`) perubahan dalam format JSON berwarna.
-- **Toleransi Kegagalan (Resilience):** Jika koneksi MongoDB Atlas offline, sistem secara otomatis mengalihkan penyimpanan ke *non-blocking in-memory buffer* sehingga alur bisnis utama tidak pernah terputus.
+### 5. Dual-Database & Immutable Audit Trail (`/audit-logs`)
+- **Asynchronous Telemetry Logging:** Every critical operation (authentication, catalog modifications, stock adjustments, POS orders, and stock transfers) is logged asynchronously without blocking the primary MySQL transaction thread.
+- **Payload Diff Inspector:** Visual UI to inspect data snapshots before (`oldValue`) and after (`newValue`) mutations with syntax-highlighted JSON diffing.
+- **Resilience & Fallback:** If MongoDB Atlas becomes unavailable, the system automatically redirects logging to a non-blocking in-memory buffer, ensuring critical business workflows remain uninterrupted.
 
-### 6. 🔐 Role-Based Access Control (RBAC)
-- Perizinan rute frontend dan endpoint backend dikontrol ketat berdasarkan JWT token dan peran pengguna.
-- Enkripsi kata sandi menggunakan `bcrypt` dengan 10 salt rounds.
+### 6. Role-Based Access Control (RBAC)
+- Frontend route guards and backend endpoints are strictly protected based on JWT tokens and granular user roles.
+- Password encryption using `bcrypt` with 10 salt rounds.
 
 ---
 
-## 👥 Akun Demo & Matriks Hak Akses
+## Demo Accounts & Access Matrix
 
-Semua akun demo telah dikonfigurasi dengan kata sandi bawaan: **`admin123`**  
-*(Dapat langsung digunakan melalui tombol 1-Click Quick Login pada halaman login)*
+All demo accounts are preconfigured with the default password: **`admin123`**  
+*(Can be accessed directly via the 1-Click Quick Login buttons on the login page)*
 
-| Peran (Role) | Email Akun | Cakupan Hak Akses (Access Scopes) |
+| Role | Account Email | Access Scopes |
 |---|---|---|
-| **Super Admin** | `admin@omniops.com` | Akses sistem penuh, manajemen gudang/cabang, manajemen user & staf, laporan analitik global, dan inspeksi seluruh audit log. |
-| **Warehouse Manager** | `manager@omniops.com` | Manajemen transfer stok antar gudang, persetujuan (*approval*) barang masuk/keluar, stock opname, dan pemantauan stok cabang. |
-| **Cashier / Operator** | `cashier@omniops.com` | Operasional terminal kasir POS harian, scan barcode barang, transaksi pembayaran, dan pencetakan struk. |
+| **Super Admin** | `admin@omniops.com` | Full system access, warehouse/branch management, user & staff management, global analytics reports, and complete audit log inspection. |
+| **Warehouse Manager** | `manager@omniops.com` | Inter-warehouse stock transfer management, inbound/outbound approvals, stock opname (adjustments), and branch inventory monitoring. |
+| **Cashier / Operator** | `cashier@omniops.com` | Daily POS terminal operations, barcode scanning, checkout transactions, and receipt printing. |
 
 ---
 
-## 💻 Tech Stack & Arsitektur Teknis
+## Tech Stack & Technical Architecture
 
-| Layer | Teknologi | Peran & Justifikasi |
+| Layer | Technology | Role & Justification |
 |---|---|---|
-| **Frontend Framework** | Next.js 15 (React 19 App Router) | Rendering performa tinggi, Server & Client Components, arsitektur route modern |
-| **Styling & Icons** | Tailwind CSS 4, Lucide React | Sistem desain modular, *responsive breakpoint*, dan ikonografi konsisten |
-| **State Management** | Zustand | State store ringan dan cepat untuk keranjang POS dan session client |
-| **Form & Validasi UI** | React Hook Form + Zod | Validasi skema tipe aman di sisi antarmuka pengguna |
-| **Data Visualization** | Recharts | Grafik analitik tren penjualan interaktif |
-| **Backend Framework** | NestJS 10 (TypeScript) | Pola arsitektur enterprise (Dependency Injection, Controllers, Services, Modules) |
-| **Relational ORM** | Prisma ORM 5 | Tipe aman penuh untuk MySQL dengan migrasi skema dan dukungan atomic transactions |
-| **Relational Database** | MySQL 8.0 | Penyimpanan data master, inventaris, relasi warehouse, dan order transaksi (ACID) |
-| **NoSQL Database** | MongoDB Atlas / Mongoose 8 | Penyimpanan log audit telemetri berkecepatan tinggi tanpa blocking |
-| **Keamanan & Middleware**| Helmet, Compression, Throttler | Proteksi header HTTP, kompresi Gzip/Brotli, dan rate limiting anti brute-force |
-| **Dokumentasi API** | Swagger / OpenAPI | Dokumentasi endpoint interaktif yang terintegrasi langsung di `/api/docs` |
+| **Frontend Framework** | Next.js 15 (React 19 App Router) | High-performance rendering, Server & Client Components, modern routing architecture |
+| **Styling & UI Components** | Tailwind CSS 4, Lucide React | Modular design system, responsive breakpoints, and consistent iconography |
+| **State Management** | Zustand | Lightweight and performant state store for the POS cart and client session |
+| **Form & UI Validation** | React Hook Form + Zod | Type-safe schema validation on the client UI layer |
+| **Data Visualization** | Recharts | Interactive sales trend and KPI analytics charts |
+| **Backend Framework** | NestJS 10 (TypeScript) | Enterprise architectural patterns (Dependency Injection, Controllers, Services, Modules) |
+| **Relational ORM** | Prisma ORM 5 | End-to-end type safety for MySQL with automated schema migrations and atomic transactions |
+| **Relational Database** | MySQL 8.0 | ACID-compliant storage for master catalogs, multi-branch inventories, warehouses, and orders |
+| **NoSQL Database** | MongoDB Atlas / Mongoose 8 | Non-blocking, high-throughput storage for immutable telemetry and audit logs |
+| **Security & Middleware** | Helmet, Compression, Throttler | HTTP security headers, Gzip/Brotli response compression, and anti-brute-force rate limiting |
+| **API Documentation** | Swagger / OpenAPI | Interactive OpenAPI documentation hosted directly at `/api/docs` |
 
 ---
 
-## 🗄️ Model Data Relasional (MySQL via Prisma)
+## Relational Data Model (MySQL via Prisma)
 
 ```mermaid
 erDiagram
@@ -256,81 +256,81 @@ erDiagram
 
 ---
 
-## 📂 Struktur Direktori Proyek (Project Structure)
+## Project Directory Structure
 
 ```
 omniops/
-├── Architecture.md         # Dokumen arsitektur teknis sistem
+├── Architecture.md         # Technical system architecture documentation
 ├── PRD.md                  # Product Requirement Document
-├── Tasks.md                # Checklist status implementasi fitur
-├── Rules.md                # Pedoman & standar coding konvensi
-├── package.json            # Root runner scripts
-├── .gitignore              # Git ignore rules untuk credentials & build artifacts
+├── Tasks.md                # Feature implementation checklist & status
+├── Rules.md                # Coding conventions and engineering guidelines
+├── package.json            # Root workspace scripts runner
+├── .gitignore              # Git ignore rules for credentials & build artifacts
 │
 ├── backend/                # NestJS API Engine
 │   ├── prisma/
-│   │   ├── schema.prisma   # Skema MySQL, relasi, & indeks performa
-│   │   ├── seed.ts         # Script seeding master data awal
-│   │   └── migrations/     # Riwayat migrasi database
+│   │   ├── schema.prisma   # MySQL schema, relations, & performance indexes
+│   │   ├── seed.ts         # Database seed script for initial master data
+│   │   └── migrations/     # Database migration history
 │   ├── src/
-│   │   ├── analytics/      # Controller & Service metrik dashboard eksekutif
-│   │   ├── audit/          # Skema Mongoose MongoDB & service audit trail
-│   │   ├── auth/           # Modul otentikasi JWT, password hashing, & RBAC guards
-│   │   ├── common/         # Global filters, interceptors, dan validation pipes
-│   │   ├── inventory/      # Stock tracking, opname, dan transfer transaksi
-│   │   ├── orders/         # POS checkout engine, kalkulasi order, & items
-│   │   ├── prisma/         # Prisma Client Service terintegrasi NestJS
-│   │   ├── products/       # Modul master katalog produk (CRUD)
-│   │   ├── warehouses/     # Modul data gudang dan cabang ritel
+│   │   ├── analytics/      # Executive dashboard metrics controller & service
+│   │   ├── audit/          # MongoDB Mongoose schemas & audit trail service
+│   │   ├── auth/           # JWT auth module, password hashing, & RBAC guards
+│   │   ├── common/         # Global filters, interceptors, and validation pipes
+│   │   ├── inventory/      # Stock tracking, adjustments, and transfer transactions
+│   │   ├── orders/         # POS checkout engine, tax/discount calculation, & items
+│   │   ├── prisma/         # Prisma Client service integrated with NestJS
+│   │   ├── products/       # Master product catalog CRUD module
+│   │   ├── warehouses/     # Warehouses and retail branch management module
 │   │   ├── app.module.ts   # Root NestJS application module
-│   │   └── main.ts         # Entry point (Helmet, Swagger, CORS, Throttler)
-│   ├── .env.example        # Template variabel lingkungan backend
+│   │   └── main.ts         # Application entry point (Helmet, Swagger, CORS, Throttler)
+│   ├── .env.example        # Backend environment variables template
 │   └── package.json
 │
 └── frontend/               # Next.js 15 App Router Frontend
-    ├── public/             # Static assets
+    ├── public/             # Static public assets
     └── src/
         ├── app/
-        │   ├── audit-logs/ # Halaman audit trail & JSON diff viewer
-        │   ├── dashboard/  # Halaman dashboard metrik & tren penjualan
-        │   ├── inventory/  # Halaman katalog master & modal stock opname
-        │   ├── login/      # Halaman login dengan 1-click Quick Login demo
-        │   ├── pos/        # Halaman terminal kasir POS, scanner, & cetak struk
-        │   ├── transfers/  # Halaman manajemen transfer stok antar gudang
-        │   ├── layout.tsx  # Root layout & navbar navigasi
-        │   └── page.tsx    # Redirect root ke dashboard/login
-        ├── components/     # UI reusable components & modal dialogs
-        ├── lib/            # Axios API client, auth helper, & formatters
-        ├── types/          # Definisi TypeScript interface
-        ├── .env.example    # Template variabel lingkungan frontend
+        │   ├── audit-logs/ # Audit trail and JSON diff viewer page
+        │   ├── dashboard/  # Analytics metrics and sales trend dashboard page
+        │   ├── inventory/  # Master catalog and stock adjustment modal page
+        │   ├── login/      # Login page with 1-click Quick Login demo
+        │   ├── pos/        # POS cashier terminal, scanner, and receipt printer page
+        │   ├── transfers/  # Inter-warehouse stock transfer management page
+        │   ├── layout.tsx  # Root application layout and navigation bar
+        │   └── page.tsx    # Root redirection to dashboard or login
+        ├── components/     # Reusable UI components & modal dialogs
+        ├── lib/            # Axios API client, auth helpers, & formatters
+        ├── types/          # TypeScript type and interface definitions
+        ├── .env.example    # Frontend environment variables template
         └── package.json
 ```
 
 ---
 
-## 🚀 Panduan Instalasi & Menjalankan (Quick Start)
+## Quick Start & Installation Guide
 
-### 1. Prasyarat Sistem
-- **Node.js**: v20.x atau versi LTS yang lebih tinggi
-- **MySQL**: Layanan database aktif di port `3306` (via XAMPP, Laragon, Docker, atau MySQL Server standalone) dengan database bernama `omniops_db`
-- **MongoDB**: *(Opsional)* MongoDB Atlas connection string atau instance MongoDB lokal untuk logging. Jika tidak diisi, sistem otomatis mengaktifkan *in-memory fallback buffer*.
+### 1. Prerequisites
+- **Node.js**: v20.x or higher LTS release
+- **MySQL**: Running database service on port `3306` (via XAMPP, Laragon, Docker, or standalone MySQL Server) with a database named `omniops_db`
+- **MongoDB**: *(Optional)* MongoDB Atlas connection string or local MongoDB instance for logging. If omitted, the system automatically uses the in-memory fallback buffer.
 
 ---
 
-### 2. Setup Backend (`backend/`)
+### 2. Backend Setup (`backend/`)
 
-Buka terminal dan navigasikan ke direktori backend:
+Open a terminal and navigate to the backend directory:
 ```bash
 cd backend
 
-# 1. Pasang dependensi backend
+# 1. Install backend dependencies
 npm install
 
-# 2. Gandakan template environment variables
+# 2. Copy the environment variables template
 cp .env.example .env
 ```
 
-Pastikan konfigurasi `.env` sesuai dengan kredensial MySQL lokal Anda:
+Ensure `.env` matches your local MySQL credentials:
 ```env
 PORT=4000
 DATABASE_URL="mysql://root:@localhost:3306/omniops_db"
@@ -338,102 +338,102 @@ JWT_SECRET="omniops-enterprise-jwt-secret-key-2026"
 CORS_ORIGINS="http://localhost:3000"
 ```
 
-Jalankan migrasi database dan seeding data awal:
+Run database migrations and seed the initial master data:
 ```bash
-# 3. Buat tabel dan skema database MySQL
+# 3. Apply Prisma migrations to generate MySQL tables
 npx prisma migrate dev --name init
 
-# 4. Masukkan data awal (Akun Admin, Manajer, Kasir, Gudang, & Produk Katalog)
+# 4. Seed initial database records (Admin, Manager, Cashier, Warehouses, & Catalog Products)
 npx prisma db seed
 
-# 5. Jalankan backend server dalam mode development
+# 5. Start the backend development server
 npm run start:dev
 ```
 - API Base URL: `http://localhost:4000/api`
-- Swagger OpenAPI Docs: `http://localhost:4000/api/docs`
+- Swagger OpenAPI Documentation: `http://localhost:4000/api/docs`
 
 ---
 
-### 3. Setup Frontend (`frontend/`)
+### 3. Frontend Setup (`frontend/`)
 
-Buka terminal kedua dan navigasikan ke direktori frontend:
+Open a second terminal and navigate to the frontend directory:
 ```bash
 cd frontend
 
-# 1. Pasang dependensi frontend
+# 1. Install frontend dependencies
 npm install
 
-# 2. Gandakan template environment variables
+# 2. Copy the environment variables template
 cp .env.example .env.local
 ```
 
-Isi variabel `.env.local`:
+Configure `.env.local`:
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:4000/api
 ```
 
-Jalankan Next.js development server:
+Start the Next.js development server:
 ```bash
 npm run dev
 ```
 
-Buka browser Anda di `http://localhost:3000`.
+Open your browser at `http://localhost:3000`.
 
 ---
 
-### 4. Menjalankan Sekaligus dari Root Directory
+### 4. Running Concurrently from Root Directory
 
-Dari direktori utama proyek (`omniops/`), Anda dapat menjalankan backend dan frontend secara praktis:
+From the project root directory (`omniops/`), you can start both backend and frontend servers:
 ```bash
-# Terminal 1: Menjalankan Backend
+# Terminal 1: Start Backend
 npm run dev:backend
 
-# Terminal 2: Menjalankan Frontend
+# Terminal 2: Start Frontend
 npm run dev:frontend
 ```
 
 ---
 
-## 📡 Ringkasan RESTful API Endpoints
+## RESTful API Endpoints Summary
 
-Semua endpoint transaksional diproteksi dengan Bearer Token JWT melalui header `Authorization: Bearer <token>`.
+All transactional endpoints are secured with JWT Bearer authentication via the header `Authorization: Bearer <token>`.
 
-| Modul | Method | Endpoint Path | Deskripsi & Hak Akses |
+| Module | Method | Endpoint Path | Description & Access Scope |
 |---|---|---|---|
-| **Auth** | `POST` | `/api/auth/login` | Login user, mengembalikan JWT & profil pengguna |
-| **Auth** | `GET` | `/api/auth/profile` | Mendapatkan info sesi user yang sedang aktif |
-| **Warehouses** | `GET` | `/api/warehouses` | Daftar seluruh gudang dan toko ritel cabang |
-| **Warehouses** | `POST` | `/api/warehouses` | Registrasi gudang cabang baru *(Super Admin)* |
-| **Products** | `GET` | `/api/products` | Katalog master produk dengan filter kategori & pencarian |
-| **Products** | `POST` | `/api/products` | Tambah produk baru dengan validasi SKU & Barcode |
-| **Products** | `PUT` | `/api/products/:id` | Update master produk |
-| **Inventory** | `GET` | `/api/inventory` | Daftar stok real-time per gudang & notifikasi low stock |
-| **Inventory** | `POST` | `/api/inventory/adjustment` | Stock Opname manual dengan pencatatan alasan |
-| **Inventory** | `GET` | `/api/inventory/transfers` | Riwayat dan status transfer stok antar cabang |
-| **Inventory** | `POST` | `/api/inventory/transfers` | Pengajuan transfer barang antar gudang |
-| **Inventory** | `PATCH`| `/api/inventory/transfers/:id/status` | Persetujuan/penyelesaian transfer *(ACID Transaction)* |
-| **Orders** | `POST` | `/api/orders` | Checkout transaksi POS kasir, kalkulasi pajak, & potong stok |
-| **Orders** | `GET` | `/api/orders` | Riwayat pesanan dan riwayat penjualan kasir |
-| **Analytics** | `GET` | `/api/analytics/dashboard` | Agregasi metrik KPI dan tren omzet 7-hari |
-| **Audit Logs** | `GET` | `/api/audit` | Riwayat audit trail telemetri dan JSON before-after diff |
+| **Auth** | `POST` | `/api/auth/login` | Authenticate user, return JWT and user profile |
+| **Auth** | `GET` | `/api/auth/profile` | Retrieve active authenticated session info |
+| **Warehouses** | `GET` | `/api/warehouses` | List all warehouses and retail store branches |
+| **Warehouses** | `POST` | `/api/warehouses` | Register new warehouse or retail store *(Super Admin)* |
+| **Products** | `GET` | `/api/products` | Product catalog with category filter & search |
+| **Products** | `POST` | `/api/products` | Create new product with SKU & barcode validation |
+| **Products** | `PUT` | `/api/products/:id` | Update existing master product |
+| **Inventory** | `GET` | `/api/inventory` | Real-time multi-location inventory & low-stock alerts |
+| **Inventory** | `POST` | `/api/inventory/adjustment` | Manual stock opname (adjustment) with audit reason |
+| **Inventory** | `GET` | `/api/inventory/transfers` | Inter-branch stock transfer history and statuses |
+| **Inventory** | `POST` | `/api/inventory/transfers` | Submit inter-warehouse stock transfer request |
+| **Inventory** | `PATCH`| `/api/inventory/transfers/:id/status` | Approve/complete stock transfer *(ACID Transaction)* |
+| **Orders** | `POST` | `/api/orders` | POS cashier checkout, tax calculation, & inventory deduction |
+| **Orders** | `GET` | `/api/orders` | Order history and cashier transaction records |
+| **Analytics** | `GET` | `/api/analytics/dashboard` | Aggregated executive KPIs and 7-day revenue trends |
+| **Audit Logs** | `GET` | `/api/audit` | Telemetry audit trail history and JSON before/after diffs |
 
-Dokumentasi lengkap dan antarmuka uji coba interaktif dapat diakses langsung via **Swagger UI** di:  
-🔗 `http://localhost:4000/api/docs`
-
----
-
-## 🛡️ Standar Kualitas & Keamanan (Security & Hardening)
-
-- **Type-Safety End-to-End:** Seluruh kode ditulis menggunakan TypeScript ketat (*no implicit any*) di backend maupun frontend.
-- **Defensive DTO Validation:** Setiap payload request divalidasi ketat oleh `ValidationPipe` NestJS berbasis `class-validator` (mencegah field injection yang tidak terdaftar via `whitelist: true` & `forbidNonWhitelisted: true`).
-- **Cryptographic Hashing:** Penyimpanan password di-hash secara satu arah menggunakan `bcrypt`.
-- **HTTP Header Hardening:** Integrasi `helmet` untuk menonaktifkan header berbahaya dan mengaktifkan proteksi XSS/sniffing standar industri.
-- **Anti Brute-Force Rate Limiting:** Proteksi endpoint sensitif dengan `@nestjs/throttler`.
-- **Response Format Standar:** Interceptor seragam `{ success: true, statusCode: 200, message: "...", data: ... }` mempermudah integrasi client.
-- **Fail-Safe Logging:** Logging MongoDB non-blocking tidak menghalangi eksekusi transaksi jika koneksi remote log mengalami latensi atau gangguan jaringan.
+Complete API documentation and interactive test runner are available via **Swagger UI** at:  
+`http://localhost:4000/api/docs`
 
 ---
 
-## 📄 Lisensi (License)
+## Quality Standards & Security Hardening
 
-Proyek ini dirilis di bawah lisensi [MIT License](LICENSE). Bebas digunakan, dimodifikasi, dan dikembangkan untuk keperluan riset maupun operasional komersial.
+- **End-to-End Type Safety:** Fully typed in strict TypeScript (*no implicit any*) across both backend and frontend applications.
+- **Defensive DTO Validation:** Inbound request payloads are strictly validated using NestJS `ValidationPipe` with `class-validator` (`whitelist: true` & `forbidNonWhitelisted: true` preventing unauthorized field injection).
+- **Cryptographic Hashing:** One-way password hashing using `bcrypt` with 10 salt rounds.
+- **HTTP Header Hardening:** `helmet` integration disabling vulnerable headers and enforcing industry-standard XSS and MIME sniffing protections.
+- **Anti-Brute-Force Rate Limiting:** Sensitive endpoints guarded by `@nestjs/throttler`.
+- **Standardized Response Envelope:** Uniform API interceptor producing `{ success: true, statusCode: 200, message: "...", data: ... }` for predictable client consumption.
+- **Fail-Safe Logging:** Non-blocking MongoDB audit logging never interrupts core transaction flows if the remote logging service encounters latency or network downtime.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). Free to use, modify, and distribute for both research and commercial operations.
